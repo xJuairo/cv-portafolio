@@ -14,8 +14,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Inicio | JUL.dev",
-  description: "Portafolio de Jairo Ulises López Durón",
+  title: "Jairo Ulises López | Software Engineer",
+  description: "Portafolio de Jairo Ulises López Durón. Ingeniero en Sistemas y Desarrollador Full Stack especializado en microservicios, AWS y Green IT.",
+  openGraph: {
+    title: "Jairo Ulises López | Software Engineer",
+    description: "Desarrollador Full Stack especializado en microservicios, AWS y Green IT.",
+    url: "https://cv-portafolio-ecru.vercel.app",
+    siteName: "JUL . dev",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jairo Ulises Portafolio"
+      }
+    ],
+    locale: "es_MX",
+    type: "website"
+  }
 };
 
 export default function RootLayout({
