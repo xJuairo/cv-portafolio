@@ -7,13 +7,12 @@ import { translations } from '@/locale/translations';
 type HistoryItem = { command: string; output: React.ReactNode };
 
 export default function TerminalModal() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [input, setInput] = useState('');
-    const [history, setHistory] = useState<HistoryItem[]>([
-        { command: '', output: 'JUL.dev Terminal OS v1.0.0\nEscribe "help" para ver los comandos disponibles.' }
-    ]);
     const { lang } = useLanguage();
     const dictionary = translations[lang];
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [input, setInput] = useState('');
+    const [history, setHistory] = useState<HistoryItem[]>([]);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const bottomRef = useRef<HTMLDivElement>(null);
@@ -109,6 +108,10 @@ export default function TerminalModal() {
 
                         {/* Cuerpo de la terminal */}
                         <div className="p-4 h-96 overflow-y-auto text-sm text-slate-300">
+                            <div className="mb-4 whitespace-pre-wrap">
+                                {dictionary.terminal.init.title}<br />
+                                {dictionary.terminal.init.subtitle}
+                            </div>
                             {history.map((item, i) => (
                                 <div key={i} className="mb-4">
                                     {item.command && (

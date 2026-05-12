@@ -101,6 +101,10 @@ export const translations = {
             cv_dl: "CV_Jairo_Ulises_Lopez_Duron_ES.pdf"
         },
         terminal: {
+            init: {
+                title: "JUL.dev Terminal OS v1.0.0",
+                subtitle: "Escribe 'help' para ver los comandos disponibles."
+            },
             commands: {
                 help: {
                     command: "help",
@@ -245,6 +249,10 @@ export const translations = {
             cv_dl: "CV_Jairo_Ulises_Lopez_Duron_EN.pdf"
         },
         terminal: {
+            init: {
+                title: "JUL.dev Terminal OS v1.0.0",
+                subtitle: "Write 'help' to see available commands."
+            },
             commands: {
                 help: {
                     command: "help",

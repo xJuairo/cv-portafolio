@@ -40,7 +40,12 @@ export default function Navbar() {
                     e.preventDefault(); // Evitamos que salte la página
                     window.dispatchEvent(new Event('openTerminal')); // ¡Disparamos el evento!
                   }}
+                  onTap={(e) => {
+                    e.preventDefault();
+                    window.dispatchEvent(new Event('openTerminal'));
+                  }}
                   whileHover={{ scale: 1.1, textShadow: "0px 0px 8px rgba(0, 209, 255, 0.8)" }}
+                  whileTap={{ scale: 0.9 }}
                   className="text-xs text-electric-blue transition-all duration-300 relative group font-mono font-bold flex items-center cursor-pointer"
                   title="Terminal de comandos oculta"
                 >
@@ -62,6 +67,21 @@ export default function Navbar() {
             )
           })}
         </div>
+        {/* CLON DE LA TERMINAL: Solo visible en Móvil */}
+        <motion.a
+          onClick={(e) => {
+            e.preventDefault();
+            window.dispatchEvent(new Event('openTerminal'));
+          }}
+          onTap={(e) => {
+            e.preventDefault();
+            window.dispatchEvent(new Event('openTerminal'));
+          }}
+          className="md:hidden text-xs text-electric-blue font-mono font-bold flex items-center cursor-pointer px-2"
+        >
+          <span>{'>'}</span>
+          <span className="animate-pulse ml-[2px]">_</span>
+        </motion.a>
         <motion.a
           href={`/${dictionary.files.cv}`}
           download={dictionary.files.cv_dl}

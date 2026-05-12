@@ -66,7 +66,7 @@ export default function Home() {
             </FadeInView>
 
             {/* Tarjeta de Educación */}
-            <FadeInView delay={0.2}>
+            <FadeInView delay={0.1}>
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-all duration-300">
                 <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_rgba(0,242,255,0.8)]"></span>
@@ -81,7 +81,7 @@ export default function Home() {
             </FadeInView>
 
             {/* Tarjeta de Stack Tecnológico */}
-            <FadeInView delay={0.3}>
+            <FadeInView delay={0.1}>
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-all duration-300">
                 <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_rgba(0,242,255,0.8)]"></span>
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="lg:col-span-8 space-y-6">
 
             {/* Tarjeta de Perfil Profesional */}
-            <FadeInView delay={0.4}>
+            <FadeInView delay={0.1}>
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 md:p-10 hover:border-slate-700 transition-all duration-300">
                 <h3 className="text-white font-bold mb-6 text-xl tracking-tight">{dictionary.profile.title}</h3>
                 <div className="text-slate-400 leading-relaxed space-y-4">
@@ -122,7 +122,7 @@ export default function Home() {
             </FadeInView>
 
             {/* Tarjeta de Experiencia */}
-            <FadeInView delay={0.5}>
+            <FadeInView delay={0.1}>
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 md:p-10 hover:border-slate-700 transition-all duration-300">
                 <h3 className="text-white font-bold mb-8 text-xl tracking-tight">{dictionary.experience.title}</h3>
 
@@ -176,7 +176,7 @@ export default function Home() {
       <section id="proyectos">
         <div className="lg:col-span-8 space-y-6 mt-6">
 
-          <FadeInView delay={0.6}>
+          <FadeInView delay={0.1}>
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-electric-blue"></span>
               {dictionary.projects.title}
@@ -185,7 +185,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.values(dictionary.projects.content).map((project, index) => (
-              <FadeInView key={index} delay={0.65}>
+              <FadeInView key={index} delay={0.1}>
                 <motion.div
                   whileHover={{ y: -5, borderColor: 'rgba(0, 209, 255, 0.5)' }}
                   className="group relative bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,209,255,0.1)] flex flex-col justify-between h-full"
@@ -235,88 +235,94 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           {/* Tarjeta de Biografía (Ocupa 2 columnas) */}
-          <motion.div
-            whileHover={{ borderColor: 'rgba(0, 209, 255, 0.3)' }}
-            className="md:col-span-2 bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 transition-colors"
-          >
-            <h4 className="text-lg font-bold text-slate-200 mb-4">{dictionary.about.aboutMe.subtitle}</h4>
-            <div className="space-y-4 text-slate-400 leading-relaxed text-sm">
-              <p>
-                {dictionary.about.aboutMe.p1}
-              </p>
-              <p>
-                {dictionary.about.aboutMe.p2}
-              </p>
-              <p>
-                {dictionary.about.aboutMe.p3}
-              </p>
-            </div>
-          </motion.div>
+          <div className="md:col-span-2">
+            <FadeInView delay={0.1}>
+              <motion.div
+                whileHover={{ borderColor: 'rgba(0, 209, 255, 0.3)' }}
+                className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 transition-colors h-full"
+              >
+                <h4 className="text-lg font-bold text-slate-200 mb-4">{dictionary.about.aboutMe.subtitle}</h4>
+                <div className="space-y-4 text-slate-400 leading-relaxed text-sm">
+                  <p>
+                    {dictionary.about.aboutMe.p1}
+                  </p>
+                  <p>
+                    {dictionary.about.aboutMe.p2}
+                  </p>
+                  <p>
+                    {dictionary.about.aboutMe.p3}
+                  </p>
+                </div>
+              </motion.div>
+            </FadeInView>
+          </div>
           {/* Tarjeta de Spotify Stats (Ocupa 1 columna) */}
-          <motion.div
-            whileHover={{ borderColor: 'rgba(0, 209, 255, 0.3)' }}
-            className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 relative overflow-hidden group transition-colors min-h-[350px] flex flex-col justify-between"
-          >
-            {/* IMAGEN DE FONDO (El contorno neón) */}
-            <div
-              className="absolute -bottom-4 -right-4 w-96 h-96 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style={{
-                backgroundImage: "url('/top_artist_neon.png')",
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'bottom right',
-                mixBlendMode: 'screen',
-                maskImage: 'linear-gradient(to top left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 90%)',
-                WebkitMaskImage: 'linear-gradient(to top left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 90%)'
-              }}
-            ></div>
+          <FadeInView delay={0.1}>
+            <motion.div
+              whileHover={{ borderColor: 'rgba(0, 209, 255, 0.3)' }}
+              className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 relative overflow-hidden group transition-colors min-h-[350px] flex flex-col justify-between h-full"
+            >
+              {/* IMAGEN DE FONDO (El contorno neón) */}
+              <div
+                className="absolute -bottom-4 -right-4 w-96 h-96 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  backgroundImage: "url('/top_artist_neon.png')",
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'bottom right',
+                  mixBlendMode: 'screen',
+                  maskImage: 'linear-gradient(to top left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 90%)',
+                  WebkitMaskImage: 'linear-gradient(to top left, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 90%)'
+                }}
+              ></div>
 
-            {/* Encabezado */}
-            <div className="flex justify-between items-center relative z-10">
-              <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">
-                {dictionary.about.spotify.title}
-              </h4>
-              <i className="fa-brands fa-spotify text-[#1DB954] text-xl"></i>
-            </div>
-
-            <div className="space-y-4 relative z-10 mt-6">
-              <div className="mb-6">
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest">{dictionary.about.spotify.totalMinutes}</p>
-                <p className="text-3xl font-bold text-white">
-                  {spotifyData.total_minutes.toLocaleString()}
-                </p>
+              {/* Encabezado */}
+              <div className="flex justify-between items-center relative z-10">
+                <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">
+                  {dictionary.about.spotify.title}
+                </h4>
+                <i className="fa-brands fa-spotify text-[#1DB954] text-xl"></i>
               </div>
 
-              <div>
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-3">{dictionary.about.spotify.topArtists}</p>
+              <div className="space-y-4 relative z-10 mt-6">
+                <div className="mb-6">
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest">{dictionary.about.spotify.totalMinutes}</p>
+                  <p className="text-3xl font-bold text-white">
+                    {spotifyData.total_minutes.toLocaleString()}
+                  </p>
+                </div>
 
-                {/* Mapeamos tus datos reales */}
-                <div className="space-y-3">
-                  {spotifyData.top_artists.map((artist, index) => {
-                    // Calculamos el porcentaje para la barra
-                    const widthPercentage = (artist.minutes / maxMinutes) * 100;
+                <div>
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-3">{dictionary.about.spotify.topArtists}</p>
 
-                    return (
-                      <div key={artist.name}>
-                        <div className="flex justify-between text-xs text-slate-300 mb-1">
-                          <span className="font-medium drop-shadow-md">{artist.name}</span>
-                          <span className="text-slate-400">{(artist.minutes / 60).toFixed(0)} hrs</span>
+                  {/* Mapeamos tus datos reales */}
+                  <div className="space-y-3">
+                    {spotifyData.top_artists.map((artist, index) => {
+                      // Calculamos el porcentaje para la barra
+                      const widthPercentage = (artist.minutes / maxMinutes) * 100;
+
+                      return (
+                        <div key={artist.name}>
+                          <div className="flex justify-between text-xs text-slate-300 mb-1">
+                            <span className="font-medium drop-shadow-md">{artist.name}</span>
+                            <span className="text-slate-400">{(artist.minutes / 60).toFixed(0)} hrs</span>
+                          </div>
+                          <div className="w-full bg-slate-900/80 rounded-full h-1.5 backdrop-blur-sm">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${widthPercentage}%` }}
+                              transition={{ duration: 1, delay: index * 0.15 }}
+                              className="bg-electric-blue h-1.5 rounded-full"
+                            ></motion.div>
+                          </div>
                         </div>
-                        <div className="w-full bg-slate-900/80 rounded-full h-1.5 backdrop-blur-sm">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${widthPercentage}%` }}
-                            transition={{ duration: 1, delay: index * 0.15 }}
-                            className="bg-electric-blue h-1.5 rounded-full"
-                          ></motion.div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </FadeInView>
         </div>
       </section>
 
@@ -361,7 +367,7 @@ export default function Home() {
 
             {/* LinkedIn */}
             <a
-              href="#"
+              href="https://www.linkedin.com/in/jairo-ulises-lopez-duron-1b5b322a2/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-electric-blue transition-colors"
