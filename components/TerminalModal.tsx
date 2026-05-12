@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/locale/translations';
 // Definimos la estructura del historial
 type HistoryItem = { command: string; output: React.ReactNode };
 
@@ -11,6 +12,8 @@ export default function TerminalModal() {
     const [history, setHistory] = useState<HistoryItem[]>([
         { command: '', output: 'JUL.dev Terminal OS v1.0.0\nEscribe "help" para ver los comandos disponibles.' }
     ]);
+    const { lang } = useLanguage();
+    const dictionary = translations[lang];
 
     const inputRef = useRef<HTMLInputElement>(null);
     const bottomRef = useRef<HTMLDivElement>(null);
@@ -42,39 +45,27 @@ export default function TerminalModal() {
             case 'help':
                 output = (
                     <div className="text-slate-300">
-                        Comandos disponibles:<br />
-                        <span className="text-electric-blue">whoami</span>   - Muestra información del usuario<br />
-                        <span className="text-electric-blue">stack</span>    - Lista las tecnologías principales<br />
-                        <span className="text-electric-blue">clear</span>    - Limpia la terminal<br />
-                        <span className="text-electric-blue">sudo</span>     - Ejecutar como administrador<br />
-                        <span className="text-electric-blue">duck</span>     - Sorpresa<br />
-                        <span className="text-electric-blue">exit</span>     - Cierra la terminal
+                        {dictionary.terminal.commands.help.subtitle}<br />
+                        <span className="text-electric-blue">whoami</span>   - {dictionary.terminal.commands.whoami.description}<br />
+                        <span className="text-electric-blue">stack</span>    - {dictionary.terminal.commands.stack.description}<br />
+                        <span className="text-electric-blue">clear</span>    - {dictionary.terminal.commands.clear.description}<br />
+                        <span className="text-electric-blue">sudo</span>     - {dictionary.terminal.commands.sudo.description}<br />
+                        <span className="text-electric-blue">duck</span>     - {dictionary.terminal.commands.duck.description}<br />
+                        <span className="text-electric-blue">exit</span>     - {dictionary.terminal.commands.exit.description}<br />
                     </div>
                 );
                 break;
             case 'whoami':
-                output = 'Jairo Ulises López Durón - Ingeniero en Sistemas, desarrollador Full Stack. Radicando en Ciudad de México.';
+                output = dictionary.terminal.commands.whoami.output;
                 break;
             case 'stack':
-                output = 'Backend: Java, Spring Boot, Quarkus | Infra: AWS, Docker, Linux, Rancher| Frontend: Next.js, React | Tools: Neovim';
+                output = dictionary.terminal.commands.stack.output;
                 break;
             case 'sudo':
-                output = 'Buen intento. Este incidente será reportado. 🚨';
+                output = dictionary.terminal.commands.sudo.output;
                 break;
             case 'duck':
-                output = `
-                ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-                ⣿⣿⣿⣿⣿⣿⣿⣿⡿⢋⣩⣭⣶⣶⣮⣭⡙⠿⣿⣿⣿⣿⣿⣿
-                ⣿⣿⣿⣿⣿⣿⠿⣋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡙⢿⣿⣿⣿
-                ⣿⣿⣿⣿⣿⡃⠄⠹⡿⣿⣿⣿⣿⠟⠛⣿⣿⣿⣿⣷⡌⢿⣿⣿
-                ⣿⣿⣿⣿⣿⠐⣠⡶⣶⣲⡎⢻⣿⣤⣴⣾⣿⣿⣿⣿⣿⠸⣿⣿
-                ⣿⠟⣋⡥⡶⣞⡯⣟⣾⣺⢽⡧⣥⣭⣉⢻⣿⣿⣿⣿⣿⣆⢻⣿
-                ⡃⣾⢯⢿⢽⣫⡯⣷⣳⢯⡯⠯⠷⠻⠞⣼⣿⣿⣿⣿⣿⣿⡌⣿
-                ⣦⣍⡙⠫⠛⠕⣋⡓⠭⣡⢶⠗⣡⣶⡝⣿⣿⣿⣿⣿⣿⣿⣧⢹
-                ⣿⣿⣿⣿⣿⣿⣘⣛⣋⣡⣵⣾⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸
-                ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸
-                ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⢸`;
+                output = dictionary.terminal.commands.duck.output;
                 break;
             case 'clear':
                 setHistory([]);
@@ -85,7 +76,7 @@ export default function TerminalModal() {
                 setInput('');
                 return;
             default:
-                output = `Comando no encontrado: ${cmd}. Escribe "help" para ver la lista.`;
+                output = dictionary.terminal.commands.unknown.output(cmd);
         }
 
         setHistory((prev) => [...prev, { command: cmd, output }]);

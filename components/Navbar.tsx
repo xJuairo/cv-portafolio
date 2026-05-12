@@ -1,11 +1,17 @@
 'use client';
+import { useLanguage } from '@/context/LanguageContext';
 import { motion } from 'framer-motion';
+import { translations } from '@/locale/translations';
 
 export default function Navbar() {
+  const { lang, toggleLanguage } = useLanguage();
+
+  const dictionary = translations[lang];
+
   const navItems = [
-    { name: 'Experiencia', href: '#experiencia' },
-    { name: 'Proyectos', href: '#proyectos' },
-    { name: 'Sobre mí', href: '#sobre-mi' },
+    { name: dictionary.nav.experience, href: '#experiencia' },
+    { name: dictionary.nav.projects, href: '#proyectos' },
+    { name: dictionary.nav.about, href: '#sobre-mi' },
     { name: '?', href: '#x' },
   ];
 
@@ -57,8 +63,8 @@ export default function Navbar() {
           })}
         </div>
         <motion.a
-          href="/cv_jairo_lopez.pdf" // Asegúrate de que el nombre coincida con tu archivo
-          download="CV_Jairo_Lopez_Duron.pdf" // El nombre con el que se guardará al descargar
+          href={`/${dictionary.files.cv}`}
+          download={dictionary.files.cv_dl}
           whileHover={{
             scale: 1.05,
             boxShadow: "0px 0px 15px rgba(0, 209, 255, 0.4)",
@@ -67,12 +73,24 @@ export default function Navbar() {
           whileTap={{ scale: 0.95 }}
           className="px-5 py-2 border border-[#00D1FF] text-[#00D1FF] rounded-lg text-sm font-bold tracking-wide transition-colors hover:text-white"
         >
-          Descargar CV
+          {dictionary.nav.downloadCV}
         </motion.a>
         {/* Botón de Contacto Rápido / Idioma */}
-        <button className="px-4 py-1.5 border border-electric-blue/30 rounded-full text-[10px] uppercase tracking-widest text-electric-blue hover:bg-electric-blue/10 transition-colors">
-          English
-        </button>
+        <motion.button
+          onClick={toggleLanguage}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="px-4 py-1.5 rounded-full border border-slate-700 text-xs font-bold tracking-widest text-slate-300 hover:text-white hover:border-electric-blue transition-colors flex items-center gap-2"
+        >
+          {/* Un ícono de mundo clásico */}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-electric-blue">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          {/* Si está en español, el botón sugiere cambiar a EN, y viceversa */}
+          {lang === 'es' ? 'EN' : 'ES'}
+        </motion.button>
       </div>
     </motion.nav>
   );

@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import { motion } from 'framer-motion';
 import spotifyData from './data/spotify_stats.json';
 import TerminalModal from '../components/TerminalModal';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/locale/translations';
 
 const maxMinutes = Math.max(...spotifyData.top_artists.map(a => a.minutes));
 
@@ -22,28 +24,9 @@ const FadeInView = ({ children, delay = 0 }: { children: React.ReactNode, delay?
   </motion.div>
 );
 
-const projects = [
-  {
-    title: "Business Rules Engine",
-    description: "Motor de reglas dinámico diseñado para desacoplar la lógica de negocio compleja del core del sistema. Ideal para entornos financieros que requieren alta flexibilidad y mantenibilidad.",
-    tech: ["Java", "Spring Boot", "Design Patterns"],
-    link: "https://github.com/xJuairo/business-rules-engine" // Tu link real
-  },
-  {
-    title: "Java Virtual Threads Manager",
-    description: "Gestor de concurrencia avanzada utilizando Virtual Threads (Project Loom). Optimización masiva de rendimiento en el manejo de tareas I/O intensivas para microservicios escalables.",
-    tech: ["Java 21", "Performance Tuning", "Concurrency"],
-    link: "#" // Para cuando lo subas
-  },
-  {
-    title: "Green IT Portfolio",
-    description: "Este sitio web: desarrollado con un enfoque en eficiencia de recursos, animaciones optimizadas con Framer Motion y una arquitectura limpia en Next.js.",
-    tech: ["Next.js", "Tailwind", "Framer Motion"],
-    link: "#"
-  }
-];
-
 export default function Home() {
+  const { lang } = useLanguage();
+  const dictionary = translations[lang];
   return (
     <main className="min-h-screen bg-[#050505] text-slate-300 p-6 md:p-12 md:py-20 font-sans selection:bg-[#0f6475] selection:text-black">
       <Navbar />
@@ -63,20 +46,20 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-electric-blue to-transparent opacity-40 group-hover:opacity-100 transition-opacity"></div>
 
                 <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
-                  Jairo Ulises <br /> López Durón
+                  {dictionary.hero.firstName} <br /> {dictionary.hero.lastName}
                 </h1>
                 <h2 className="text-electric-blue font-medium mb-8 uppercase tracking-wider text-sm">
-                  Ingeniero en Sistemas Computacionales
+                  {dictionary.hero.subtitle}
                 </h2>
 
                 <div className="space-y-4 text-sm text-slate-400">
                   <div className="flex items-center gap-3">
                     <span className="text-slate-600">📍</span>
-                    <span>Aguascalientes, México</span>
+                    <span>{dictionary.hero.location}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-slate-600">✉️</span>
-                    <span className="hover:text-electric-blue transition-colors cursor-pointer">jairouliseslopezduron@gmail.com</span>
+                    <span className="hover:text-electric-blue transition-colors cursor-pointer">{dictionary.hero.email}</span>
                   </div>
                 </div>
               </div>
@@ -87,12 +70,12 @@ export default function Home() {
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-all duration-300">
                 <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_rgba(0,242,255,0.8)]"></span>
-                  Educación
+                  {dictionary.education.title}
                 </h3>
                 <div>
-                  <h3 className="text-white font-semibold">Universidad Autónoma de Aguascalientes</h3>
-                  <h4 className="text-slate-200 font-medium">Licenciatura en Ingeniería en Sistemas</h4>
-                  <p className="text-xs text-slate-500 mt-1 font-mono uppercase tracking-widest">Agosto 2019 · Diciembre 2024</p>
+                  <h3 className="text-white font-semibold">{dictionary.education.university}</h3>
+                  <h4 className="text-slate-200 font-medium">{dictionary.education.degree}</h4>
+                  <p className="text-xs text-slate-500 mt-1 font-mono uppercase tracking-widest">{dictionary.education.date}</p>
                 </div>
               </div>
             </FadeInView>
@@ -102,7 +85,7 @@ export default function Home() {
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-6 hover:border-slate-600 transition-all duration-300">
                 <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_8px_rgba(0,242,255,0.8)]"></span>
-                  Stack & Herramientas
+                  {dictionary.stack.title}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {['Spring Boot', 'Quarkus', 'AWS', 'Docker', 'Oracle DB PL/SQL', 'Neovim', 'Linux', 'Windows', 'Jenkins', 'Rancher', 'Git', 'Maven', 'Gradle', 'Vue.js', 'PrimeFaces', 'Angular', 'React', 'TypeScript', 'HTML5', 'CSS', 'JavaScript', 'JPA/Hibernate'].map((tech) => (
@@ -126,13 +109,13 @@ export default function Home() {
             {/* Tarjeta de Perfil Profesional */}
             <FadeInView delay={0.4}>
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 md:p-10 hover:border-slate-700 transition-all duration-300">
-                <h3 className="text-white font-bold mb-6 text-xl tracking-tight">Perfil Profesional</h3>
+                <h3 className="text-white font-bold mb-6 text-xl tracking-tight">{dictionary.profile.title}</h3>
                 <div className="text-slate-400 leading-relaxed space-y-4">
                   <p>
-                    Desarrollador Full Stack con experiencia en el sector bancario y estadístico, especializado en el desarrollo y mantenimiento de microservicios API REST, SOAP, gRPC y Web Services
+                    {dictionary.profile.p1}
                   </p>
                   <p>
-                    Habilidad en el análisis y resolución de problemas, algoritmos, modelado de datos. Organizado y promotor del uso de las buenas prácticas en el desarrollo de software. Fuertes conocimientos en programación, bases de datos relacionales/no relacionales.
+                    {dictionary.profile.p2}
                   </p>
                 </div>
               </div>
@@ -141,7 +124,7 @@ export default function Home() {
             {/* Tarjeta de Experiencia */}
             <FadeInView delay={0.5}>
               <div className="bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 md:p-10 hover:border-slate-700 transition-all duration-300">
-                <h3 className="text-white font-bold mb-8 text-xl tracking-tight">Experiencia Destacada</h3>
+                <h3 className="text-white font-bold mb-8 text-xl tracking-tight">{dictionary.experience.title}</h3>
 
                 <div className="relative pl-6 border-l-2 border-slate-800 space-y-12">
 
@@ -151,18 +134,16 @@ export default function Home() {
                     <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-black border-2 border-slate-700 group-hover:border-electric-blue group-hover:shadow-[0_0_12px_rgba(0,242,255,0.6)] transition-all duration-300"></div>
 
                     <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-4">
-                      <h4 className="text-xl font-bold text-slate-100 group-hover:text-white transition-colors">Desarrollador Backend</h4>
+                      <h4 className="text-xl font-bold text-slate-100 group-hover:text-white transition-colors">{dictionary.experience.gs.role}</h4>
                       <span className="text-electric-blue text-sm font-mono mt-1 sm:mt-0 bg-electric-blue/10 px-3 py-1 rounded-full">
-                        Grupo Salinas | [Mayo 2025] - Actualidad
+                        {dictionary.experience.gs.company} | {dictionary.experience.gs.date}
                       </span>
                     </div>
 
                     <ul className="list-disc list-outside ml-4 space-y-3 text-slate-400 marker:text-slate-600">
-                      <li>Desarrollo y mantenimiento de microservicios para el sector bancario utilizando <strong className="text-electric-blue font-normal">Spring Boot</strong>, <strong className="text-electric-blue font-normal">Quarkus</strong>, <strong className="text-electric-blue font-normal">Docker</strong>, <strong className="text-electric-blue font-normal">Maven</strong>, <strong className="text-electric-blue font-normal">Git</strong> y otras herramientas.</li>
-                      <li>Participación en procesos de CI/CD, tanto nube como on premise, utilizando herramientas como <strong className="text-electric-blue font-normal">Jenkins</strong> para pipelines, gestión de recursos en <strong className="text-electric-blue font-normal">AWS</strong>, y <strong className="text-electric-blue font-normal">Rancher</strong> para despliegues.</li>
-                      <li>Creación y ejecución de pruebas unitarias y de integración utilizando <strong className="text-electric-blue font-normal">JUnit</strong>, <strong className="text-electric-blue font-normal">Mockito</strong>, <strong className="text-electric-blue font-normal">Testcontainers</strong>, <strong className="text-electric-blue font-normal">SonarQube</strong>, <strong className="text-electric-blue font-normal">Checkmarx</strong> para asegurar la calidad del código.</li>
-                      <li>Colaboración con equipos de desarrollo y operaciones para implementar soluciones eficientes y escalables.</li>
-                      <li>Resolución de incidencias y optimización de procesos de desarrollo y despliegue.</li>
+                      {dictionary.experience.gs.bullets.map((item: string, index: number) => (
+                        <li key={index}>{item}</li>
+                      ))}
                     </ul>
                   </div>
 
@@ -172,19 +153,16 @@ export default function Home() {
                     <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-black border-2 border-slate-700 group-hover:border-electric-blue group-hover:shadow-[0_0_12px_rgba(0,242,255,0.6)] transition-all duration-300"></div>
 
                     <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-4">
-                      <h4 className="text-xl font-bold text-slate-100 group-hover:text-white transition-colors">Desarrollador Full Stack</h4>
+                      <h4 className="text-xl font-bold text-slate-100 group-hover:text-white transition-colors">{dictionary.experience.inegi.role}</h4>
                       <span className="text-electric-blue text-sm font-mono mt-1 sm:mt-0 bg-electric-blue/10 px-3 py-1 rounded-full">
-                        INEGI | [Abril 2024] - [Mayo 2025]
+                        {dictionary.experience.inegi.company} | {dictionary.experience.inegi.date}
                       </span>
                     </div>
 
                     <ul className="list-disc list-outside ml-4 space-y-3 text-slate-400 marker:text-slate-600">
-                      <li>Desarrollo de sistemas estadísticos utilizando <strong className="text-electric-blue font-normal">Java</strong>, <strong className="text-electric-blue font-normal">PrimeFaces</strong>, <strong className="text-electric-blue font-normal">Vue.js</strong>, <strong className="text-electric-blue font-normal">Gradle</strong>, <strong className="text-electric-blue font-normal">Maven</strong>.</li>
-                      <li>Análisis de requerimientos, creación de modelos de datos de alto rendimiento utilizando <strong className="text-electric-blue font-normal">Oracle SQL Developer Data Modeler</strong>.</li>
-                      <li>Creación y mantenimiento de procedimientos almacenados, funciones y triggers en <strong className="text-electric-blue font-normal">Oracle</strong> utilizando técnicas de tunning para optimizar el tiempo de ejecución de los procesos.</li>
-                      <li>Creación y ejecución de pruebas unitarias y de integración utilizando <strong className="text-electric-blue font-normal">JUnit</strong>, <strong className="text-electric-blue font-normal">Mockito</strong>, <strong className="text-electric-blue font-normal">SonarQube</strong> para asegurar la calidad del código.</li>
-                      <li>Control de versiones y colaboración con equipos de desarrollo utilizando <strong className="text-electric-blue font-normal">Git</strong>.</li>
-                      <li>Capacitación de personal, explicación de requerimientos, modelos de datos y procesos desarrollados.</li>
+                      {dictionary.experience.inegi.bullets.map((item: string, index: number) => (
+                        <li key={index}>{item}</li>
+                      ))}
                     </ul>
                   </div>
 
@@ -201,12 +179,12 @@ export default function Home() {
           <FadeInView delay={0.6}>
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-electric-blue"></span>
-              Proyectos Destacados
+              {dictionary.projects.title}
             </h3>
           </FadeInView>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, index) => (
+            {Object.values(dictionary.projects.content).map((project, index) => (
               <FadeInView key={index} delay={0.65}>
                 <motion.div
                   whileHover={{ y: -5, borderColor: 'rgba(0, 209, 255, 0.5)' }}
@@ -251,7 +229,7 @@ export default function Home() {
       <section id="sobre-mi" className="mt-20">
         <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-electric-blue"></span>
-          Sobre Mí & Data
+          {dictionary.about.aboutMe.title}
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -261,13 +239,16 @@ export default function Home() {
             whileHover={{ borderColor: 'rgba(0, 209, 255, 0.3)' }}
             className="md:col-span-2 bg-[#0a0a0a] border border-slate-800 rounded-2xl p-8 transition-colors"
           >
-            <h4 className="text-lg font-bold text-slate-200 mb-4">El Ingeniero detrás del Código</h4>
+            <h4 className="text-lg font-bold text-slate-200 mb-4">{dictionary.about.aboutMe.subtitle}</h4>
             <div className="space-y-4 text-slate-400 leading-relaxed text-sm">
               <p>
-                Soy un Ingeniero en Sistemas enfocado en la construcción de arquitecturas robustas para el sector bancario y financiero. Mi especialidad radica en traducir reglas de negocio complejas en microservicios eficientes, seguros y escalables.
+                {dictionary.about.aboutMe.p1}
               </p>
               <p>
-                Cuando no estoy migrando contenedores en AWS o afinando consultas PL/SQL, me dedico a analizar datos por diversión y explorar la cultura pop japonesa.
+                {dictionary.about.aboutMe.p2}
+              </p>
+              <p>
+                {dictionary.about.aboutMe.p3}
               </p>
             </div>
           </motion.div>
@@ -293,21 +274,21 @@ export default function Home() {
             {/* Encabezado */}
             <div className="flex justify-between items-center relative z-10">
               <h4 className="text-sm font-bold text-slate-200 uppercase tracking-widest">
-                Spotify Analytics
+                {dictionary.about.spotify.title}
               </h4>
               <i className="fa-brands fa-spotify text-[#1DB954] text-xl"></i>
             </div>
 
             <div className="space-y-4 relative z-10 mt-6">
               <div className="mb-6">
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest">Minutos Totales Escuchados</p>
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest">{dictionary.about.spotify.totalMinutes}</p>
                 <p className="text-3xl font-bold text-white">
                   {spotifyData.total_minutes.toLocaleString()}
                 </p>
               </div>
 
               <div>
-                <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-3">Top Artistas</p>
+                <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-3">{dictionary.about.spotify.topArtists}</p>
 
                 {/* Mapeamos tus datos reales */}
                 <div className="space-y-3">
@@ -350,7 +331,7 @@ export default function Home() {
               JUL . dev
             </span>
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} Jairo Ulises López Durón. Todos los derechos reservados.
+              © {new Date().getFullYear()} {dictionary.footer.copyright}
             </p>
           </div>
 
