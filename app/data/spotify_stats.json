@@ -1,25 +1,25 @@
 {
-  "total_minutes": 477466,
+  "total_minutes": 531947,
   "top_artists": [
     {
+      "name": "ZUTOMAYO",
+      "minutes": 24686
+    },
+    {
       "name": "Canserbero",
-      "minutes": 15672
+      "minutes": 15921
     },
     {
       "name": "TWICE",
-      "minutes": 13858
-    },
-    {
-      "name": "ZUTOMAYO",
-      "minutes": 13743
+      "minutes": 13938
     },
     {
       "name": "Bizarrap",
-      "minutes": 10627
+      "minutes": 10854
     },
     {
       "name": "Drake",
-      "minutes": 9627
+      "minutes": 9737
     }
   ]
 }
