@@ -1,13 +1,70 @@
 @import "tailwindcss";
 
 @theme {
+  /* Tus colores originales intactos */
   --color-electric-blue: #00f2ff;
   --color-electric-blue-glow: rgba(0, 242, 255, 0.2);
+
+  /* Nuevos colores dinámicos para manejar el cambio de temas */
+  --color-main: var(--bg-main);
+  --color-card: var(--bg-card);
+  --color-text-primary: var(--text-main);
+  --color-text-secondary: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-border-line: var(--border-color);
 }
 
-:root {
-  background-color: #000000;
-  color: #f8fafc;
+@layer base {
+
+  /* 1. TEMA NEÓN (Tu configuración base) */
+  :root,
+  [data-theme="neon"] {
+    --bg-main: #000000;
+    --bg-card: #0a0a0a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #00f2ff;
+    /* Tu azul eléctrico original */
+    --border-color: #1e293b;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+  }
+
+  /* 2. TEMA CLARO */
+  [data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --accent: #2563eb;
+    --border-color: #e2e8f0;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+  }
+
+  /* 3. TEMA DRÁCULA */
+  [data-theme="dracula"] {
+    --bg-main: #282a36;
+    --bg-card: #44475a;
+    --text-main: #f8f8f2;
+    --text-muted: #6272a4;
+    --accent: #ff79c6;
+    --border-color: #6272a4;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+  }
+
+  /* 4. TEMA CAFÉ PASTEL */
+  [data-theme="coffee"] {
+    --bg-main: #f5ebe0;
+    --bg-card: #ffffff;
+    --text-main: #4a3b32;
+    --text-muted: #9c8a7e;
+    --accent: #c17a50;
+    --border-color: #d5bdaf;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+  }
 }
 
 body {

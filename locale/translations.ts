@@ -17,7 +17,7 @@ export const translations = {
             title: "Educación",
             university: "Universidad Autónoma de Aguascalientes",
             degree: "Ingeniería en Sistemas Computacionales",
-            date: "[Agosto 2019] - [Diciembre 2024]"
+            date: "[Agosto 2019] - [Diciembre 2023]"
         },
         stack: {
             title: "Stack y Herramientas",
@@ -84,8 +84,7 @@ export const translations = {
                 title: "SOBRE MÍ",
                 subtitle: "El Ingeniero detrás del Código",
                 p1: "Soy un Ingeniero en Sistemas enfocado en la construcción de arquitecturas robustas para el sector bancario y financiero. Mi especialidad radica en traducir reglas de negocio complejas en microservicios eficientes, seguros y escalables.",
-                p2: "Más allá del código corporativo, soy un apasionado del Green IT. Creo firmemente que la optimización de algoritmos y la eficiencia en la nube no solo ahorran costos operativos, sino que son nuestra responsabilidad para reducir la huella de carbono digital.",
-                p3: "Cuando no estoy migrando contenedores en AWS o afinando consultas PL/SQL, me dedico a analizar datos por diversión y explorar la cultura pop japonesa."
+                p2: "Cuando no estoy migrando contenedores en AWS o afinando consultas PL/SQL, me dedico a analizar datos por diversión y explorar la cultura pop japonesa."
             },
             spotify: {
                 title: "Spotify Analytics",
@@ -165,7 +164,7 @@ export const translations = {
             title: "Education",
             university: "Universidad Autónoma de Aguascalientes",
             degree: "Computer Systems Engineering",
-            date: "[August 2019] - [December 2024]"
+            date: "[August 2019] - [December 2023]"
         },
         stack: {
             title: "Stack & Tools",
@@ -232,8 +231,7 @@ export const translations = {
                 title: "About Me",
                 subtitle: "The Engineer Behind the Code",
                 p1: "I am a Systems Engineer focused on building robust architectures for the banking and financial sector. My specialty lies in translating complex business rules into efficient, secure, and scalable microservices.",
-                p2: "Beyond corporate code, I am passionate about Green IT. I firmly believe that optimizing algorithms and cloud efficiency not only save operational costs but are our responsibility in reducing the digital carbon footprint.",
-                p3: "When I'm not migrating containers on AWS or tuning PL/SQL queries, I dedicate time to analyzing data for fun and exploring Japanese pop culture."
+                p2: "When I'm not migrating containers on AWS or tuning PL/SQL queries, I dedicate time to analyzing data for fun and exploring Japanese pop culture."
             },
             spotify: {
                 title: "Spotify Analytics",
